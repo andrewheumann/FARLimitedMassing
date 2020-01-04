@@ -1,7 +1,7 @@
 using Elements;
 using Elements.Geometry;
 using Elements.Geometry.Solids;
-using GeometryEx;
+// using GeometryEx;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -81,10 +81,10 @@ namespace FARLimitedMassing
 
                 var extrusion = new Extrude(siteBoundary, totalHeight, Vector3.ZAxis, 0, false);
                 var geomRep = new Representation(new List<SolidOperation>() { extrusion });
-                var envMatl = new Material("envelope", Palette.Aqua, 0.0f, 0.0f);
+                // var envMatl = new Material("envelope", Palette.Aqua, 0.0f, 0.0f);
 
                 envelopes.Add(new Envelope(siteBoundary, 0, totalHeight, Vector3.ZAxis,
-                              0.0, new Transform(0.0, 0.0, 0.0), envMatl, geomRep, Guid.NewGuid(), ""));
+                              0.0, new Transform(0.0, 0.0, 0.0), null, geomRep, Guid.NewGuid(), ""));
             }
 
             var output = new FARLimitedMassingOutputs(facadeArea);
