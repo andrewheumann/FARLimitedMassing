@@ -1,0 +1,45 @@
+{
+  "$schema": "https://hypar.io/Schemas/Function.json",
+  "description": "The FARLimitedMassing function.",
+  "id": "f6f4bafc-65f0-4667-8a16-58d805a7388b",
+  "name": "FAR-Limited Massing",
+  "repository_url": "https://github.com/hypar-io/function",
+  "inputs": [
+    {
+      "min": 1.0,
+      "max": 10.0,
+      "step": 0.5,
+      "name": "FAR",
+      "description": "The Floor Area Ratio.",
+      "type": "range"
+    },
+    {
+      "min": 0.1,
+      "max": 1.0,
+      "step": 0.1,
+      "name": "Footprint Size",
+      "description": "The size of the footprint as a function of the site area; 1.0 covers the whole site.",
+      "type": "range"
+    },
+    {
+      "min": 3,
+      "max": 6,
+      "step": 0.1,
+      "name": "Floor-to-floor height",
+      "description": "The size of the (average) floor. This only affects the overall height of the mass.",
+      "type": "range"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "Facade Area",
+      "description": "The facade area.",
+      "type": "number"
+    }
+  ],
+  "preview_image": null,
+  "element_types": [
+    "https://raw.githubusercontent.com/hypar-io/Schemas/master/Site.json",
+    "https://raw.githubusercontent.com/hypar-io/Schemas/master/Envelope.json"
+  ]
+}
