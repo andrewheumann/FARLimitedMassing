@@ -1,7 +1,6 @@
 using Elements;
 using Elements.Geometry;
 using Elements.Geometry.Solids;
-using GeometryEx;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -25,19 +24,7 @@ namespace FARLimitedMassing
             {
                 try
                 {
-                    if (File.Exists("../../../../TestSite.json"))
-                    {
-                        Console.WriteLine("trying to get from in test");
-
-                        model = Model.FromJson(System.IO.File.ReadAllText("../../../../TestSite.json"));
-                    }
-                    else
-                    {
-                        Console.WriteLine("trying to get from local dir");
-                        model = Model.FromJson(System.IO.File.ReadAllText("TestSite.json"));
-                        Console.WriteLine(model.ToJson());
-                    }
-
+                    model = Model.FromJson(System.IO.File.ReadAllText("TestSite.json"));
                 }
                 catch (Exception e)
                 {
@@ -45,10 +32,6 @@ namespace FARLimitedMassing
                 }
             }
             var sites = model.AllElementsOfType<Site>();
-            foreach (var element in sites)
-            {
-                Console.WriteLine(element.GetType().ToString());
-            }
             if (sites.Count() < 1)
             {
                 throw new ArgumentException("No site found in model");
@@ -81,7 +64,7 @@ namespace FARLimitedMassing
 
                 var extrusion = new Extrude(siteBoundary, totalHeight, Vector3.ZAxis, 0, false);
                 var geomRep = new Representation(new List<SolidOperation>() { extrusion });
-                var envMatl = new Material("envelope", Palette.Aqua, 0.0f, 0.0f);
+                var envMatl = new Material("envelope", new Color(0, 0, 1.0f, 0.5f), 0.0f, 0.0f);
 
                 envelopes.Add(new Envelope(siteBoundary, 0, totalHeight, Vector3.ZAxis,
                               0.0, new Transform(0.0, 0.0, 0.0), envMatl, geomRep, Guid.NewGuid(), ""));
